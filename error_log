@@ -1,0 +1,5 @@
+[29-Dec-2023 17:23:25 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 24576 bytes) in /home/sirsorg/public_html/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 154
+[29-Dec-2023 17:23:46 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 24576 bytes) in /home/sirsorg/public_html/vendor/intervention/image/src/Intervention/Image/Gd/Decoder.php on line 154
+[22-Jan-2024 18:22:06 UTC] PHP Fatal error:  Cannot use Artesaos\SEOTools\Facades\SEOTools as SEOTools because the name is already in use in /home/sirsorg/public_html/app/Http/Livewire/Frontend/Detail/DetailpageView.php on line 21
+[22-Jan-2024 18:22:07 UTC] PHP Fatal error:  Cannot use Artesaos\SEOTools\Facades\SEOTools as SEOTools because the name is already in use in /home/sirsorg/public_html/app/Http/Livewire/Frontend/Detail/DetailpageView.php on line 21
+[22-Jan-2024 18:22:07 UTC] PHP Fatal error:  Cannot use Artesaos\SEOTools\Facades\SEOTools as SEOTools because the name is already in use in /home/sirsorg/public_html/app/Http/Livewire/Frontend/Detail/DetailpageView.php on line 21
