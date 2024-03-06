@@ -6,6 +6,10 @@ use App\Http\Livewire\Backend\AdminDashboard;
 use App\Http\Livewire\Backend\Profile\AdminProfile;
 use App\Http\Controllers\AdminLogoutController;
 use App\Http\Livewire\Frontend\Home\Homepage;
+use App\Http\Livewire\Frontend\AboutUs;
+use App\Http\Livewire\Frontend\BoardofGovernors;
+use App\Http\Livewire\Frontend\MandatoryDisclosure;
+
 use App\Http\Livewire\Frontend\Detail\DetailpageView;
 use App\Http\Livewire\Backend\Menu\ViewMenu;
 use App\Http\Livewire\Backend\Menu\EditMenu;
@@ -74,6 +78,9 @@ use App\Http\Livewire\Backend\HomeContent\Nineth;
 use App\Http\Livewire\Backend\HomeContent\NinethEdit;
 use App\Http\Livewire\Backend\HomeContent\Tenth;
 use App\Http\Livewire\Backend\HomeContent\TenthEdit;
+use App\Http\Livewire\Backend\Mandatory\MandatoryPublicDisclosure;
+use App\Http\Livewire\Backend\Mandatory\ViewMandatoryPublicDisclosure;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -107,6 +114,9 @@ Route::get('/phpinfo', function (){
 Route::get('detail/page/{page_id}/{slug}', DetailpageView::class)->name('detail_page');
  Route::group(['middleware' => ['check-menu-route-status']], function () {
  Route::get('/', Homepage::class)->name('home.homepage');
+ Route::get('/about-us', AboutUs::class)->name('home.about_us');
+ Route::get('/board-of-governors', BoardofGovernors::class)->name('home.board_of_governors');
+ Route::get('/mandatory-disclosure', MandatoryDisclosure::class)->name('home.mandatory_disclosure');
 });
 
 
@@ -194,6 +204,11 @@ Route::get('/edit/footer-quick-links/{id}', EditFooterLinks::class)->name('edit_
 
 Route::get('/create/page', CreatePage::class)->name('create_page');
 Route::get('/edit/page/{id}', EditPage::class)->name('edit_page');
+Route::get('/mandatory-form', MandatoryPublicDisclosure::class)->name('mandatory_form');
+Route::get('/view-mandatory-form', ViewMandatoryPublicDisclosure::class)->name('view_mandatory_form');
+
+
+
 Route::get('/add/blog-category', AddBlogCategory::class)->name('add_blog_category');
 Route::get('/add/edit-category/{id}', EditBlogCategory::class)->name('edit_blog_category');
 Route::get('/add/blog', AddBlog::class)->name('add_blog');

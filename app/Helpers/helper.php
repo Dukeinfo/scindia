@@ -174,3 +174,9 @@ function getBlogImage($value) {
 function getPrincipalDeskImage($value) {
     return asset('storage/uploads/principaldesk/'.$value);
 }
+
+function download($document){
+       $path =  Storage::path('public/uploads/document/'. $document);
+     return response()->download($path);
+
+} 

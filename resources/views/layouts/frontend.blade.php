@@ -274,6 +274,10 @@ $youtube = App\Models\SocialApp::orderBy('sort_id','asc')->where(['status' => 'A
                 </div>
             </div>
         </div>
+
+@php
+$contactInfo = App\Models\ContactInfo::orderBy('sort_id','asc')->where('status','Active')->first();
+@endphp        
         <div class="footer-bottom padding-five-tb lg-padding-eight-tb md-padding-50px-tb">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-3 justify-content-center">
@@ -282,20 +286,62 @@ $youtube = App\Models\SocialApp::orderBy('sort_id','asc')->where(['status' => 'A
                         <span
                             class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Scindia
                             Kanya Vidyalaya</span>
+                    @if(isset($contactInfo))        
+                        @if(isset($contactInfo->disclaimer))
+
+                        <p class="mt-4">{{$contactInfo->disclaimer ?? 'We believe that educating a girl is equal to educating a family. Our institution
+                            is
+                            associated with education along with preservation of customs and culture. We teach our
+                            students to treat everyone with respect and humility. To achieve all round development and
+                            character building the school has a strict discipline policy.'}}</p>
+
+                        @endif
+                    @else    
                         <p class="mt-4">We believe that educating a girl is equal to educating a family. Our institution
                             is
                             associated with education along with preservation of customs and culture. We teach our
                             students to treat everyone with respect and humility. To achieve all round development and
                             character building the school has a strict discipline policy.</p>
-                        <a href="" class="btn btn-neon-orange text-white btn-small">Read More</a>
+                    @endif 
+
+                       @if(isset($contactInfo)) 
+                        <a href="{{$contactInfo->link ?? 'javascript:void()'}}" class="btn btn-neon-orange text-white btn-small" target="_blank">Read More</a>
+                        @else
+                        <a href="javascript:void()" class="btn btn-neon-orange text-white btn-small">Read More</a>
+                      @endif  
                     </div>
                     <!-- end footer column -->
+
+@php
+$quickLinks = App\Models\FooterLink::orderBy('sort_id','asc')->where(['status' => 'Active','category' => 'Quick Links'])->get();          
+@endphp                  
                     <!-- start footer column -->
                     <div class="col col-xl-2 col-lg md-margin-50px-bottom xs-margin-25px-bottom">
                         <span
                             class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Quick
                             Links</span>
                         <ul>
+                            @if(isset($quickLinks) && count($quickLinks) >0 )
+                            @if(isset($quickLinks) && count($quickLinks) >0 )
+                               @foreach($quickLinks as $links)
+
+                               @php
+                               $link = str_replace('home.', '', $links->pname);
+                               $quicklink=str_replace('_', '-', $link);
+                               @endphp
+                               @if($links->pname)
+                               <li><a href="{{url($quicklink)}}" target="_blank">{{$links->pagetitle}}</a></li>
+                               @elseif($links->mname)
+                               <li><a href="{{$links->mname ?? 'javascript:void()'}}" target="_blank">{{$links->pagetitle}}</a></li>
+                               @else
+                               <li><a href="javascript:void()">{{$links->pagetitle}}</a></li>
+                               @endif
+
+                              @endforeach
+                              @endif
+
+
+                            @else
                             <li><a href="javascript:void()">About School</a></li>
                             <li><a href="javascript:void()">Academics</a></li>
                             <li><a href="javascript:void()">Admissions</a></li>
@@ -303,6 +349,7 @@ $youtube = App\Models\SocialApp::orderBy('sort_id','asc')->where(['status' => 'A
                             <li><a href="javascript:void()">Societies</a></li>
                             <li><a href="javascript:void()">News & Events</a></li>
                             <li><a href="javascript:void()">Contact Us</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- end footer column -->
@@ -311,15 +358,30 @@ $youtube = App\Models\SocialApp::orderBy('sort_id','asc')->where(['status' => 'A
                         <span
                             class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Get
                             in touch</span>
+                        @if(isset($contactInfo))
+
+                           {{$contactInfo->address ?? 'Scindia Kanya Vidyalaya <br>
+                            Moti Mahal Road <br>
+                            Gwalior - 474007 <br>
+                            (M.P.) INDIA'}}
+                            
+                        @else
                         <p class="w-85 margin-15px-bottom">Scindia Kanya Vidyalaya <br>
                             Moti Mahal Road <br>
                             Gwalior - 474007 <br>
                             (M.P.) INDIA</p>
+                       @endif 
+
+
+                     
                         <div><i
-                                class="feather icon-feather-phone-call icon-very-small margin-10px-right text-white"></i>+1
-                            234 567 8910</div>
+                                class="feather icon-feather-phone-call icon-very-small margin-10px-right text-white"></i>{{$contactInfo->phone ?? '+1
+                            234 567 8910'}}</div>
+
+
+
                         <div><i class="feather icon-feather-mail icon-very-small margin-10px-right text-white"></i><a
-                                href="#">info@yourdomain.com</a></div>
+                                href="#">{{$contactInfo->email ?? 'info@yourdomain.com'}}</a></div>
                     </div>
                     <!-- end footer column -->
                     <!-- start footer column -->
