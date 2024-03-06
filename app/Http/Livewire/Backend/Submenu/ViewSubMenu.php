@@ -82,6 +82,9 @@ class ViewSubMenu extends Component
       'pname'=> 'required', 
     ]);
    }
+
+
+   $validatedData = $this->validate();
       if(!is_null($this->image)){
         $image =  $this->image;
         $folder = '/uploads/submenu';
