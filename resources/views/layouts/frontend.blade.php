@@ -86,6 +86,8 @@ $menus = App\Models\Menu::orderBy('sort_id','asc')->where('status','Active')->li
             </div>
         </nav>
         <!-- end navigation -->
+
+        
         <!-- start hamburger popup -->
         <div class="hamburger-menu hamburger-menu-half bg-slate-blue lg-w-60 md-w-60 sm-w-100">
             <a href="javascript:void(0);" class="close-menu text-white"><i class="fas fa-times"></i></a>
